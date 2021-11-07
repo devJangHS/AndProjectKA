@@ -20,6 +20,8 @@ public class AnimActivity extends AppCompatActivity {
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_sample);
         imgStar.startAnimation(animation);
+        
+        //Git 테스트 용 변경 사항
 
 
 
