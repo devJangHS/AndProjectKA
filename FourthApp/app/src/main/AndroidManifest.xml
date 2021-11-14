@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FourthApp">
         <activity
+            android:name=".NotificationActivity"
+            android:exported="true" />
+        <activity
             android:name=".AnimActivity"
             android:exported="true" />
 
