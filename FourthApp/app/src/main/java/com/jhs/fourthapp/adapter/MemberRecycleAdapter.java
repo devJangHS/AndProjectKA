@@ -14,6 +14,7 @@ import com.jhs.fourthapp.R;
 import com.jhs.fourthapp.data.Member;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MemberRecycleAdapter extends RecyclerView.Adapter<MemberRecycleAdapter.MemberHolder> {
 

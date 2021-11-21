@@ -16,6 +16,7 @@ public class Member {
     int type;
 
 
+
     public Member(){ }
 
     public Member(String loginId, String name){
