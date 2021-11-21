@@ -30,4 +30,16 @@
         android:layout_height="wrap_content"
         android:text="Notification" />
 
+    <Button
+        android:id="@+id/btnDB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DB" />
+
+    <Button
+        android:id="@+id/btnNetwork"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Network" />
+
 </LinearLayout>

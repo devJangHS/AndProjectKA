@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/android1_jhs/workspace/AndProjectKA/FourthApp/app/src/main/res/layout/activity_db.xml" value="0.44947916666666665" />
         <entry key="..\:/android1_jhs/workspace/AndProjectKA/FourthApp/app/src/main/res/layout/activity_main.xml" value="0.44947916666666665" />
+        <entry key="..\:/android1_jhs/workspace/AndProjectKA/FourthApp/app/src/main/res/layout/activity_network.xml" value="0.44947916666666665" />
         <entry key="..\:/android1_jhs/workspace/AndProjectKA/FourthApp/app/src/main/res/layout/activity_notification.xml" value="0.44947916666666665" />
         <entry key="..\:/android1_jhs/workspace/AndProjectKA/FourthApp/app/src/main/res/layout/custom_noti.xml" value="0.44947916666666665" />
+        <entry key="..\:/android1_jhs/workspace/AndProjectKA/FourthApp/app/src/main/res/layout/lv_member_item.xml" value="0.44947916666666665" />
         <entry key="..\:/android1_jhs/workspace/FourthApp/app/src/main/res/layout/activity_anim.xml" value="0.44947916666666665" />
         <entry key="..\:/android1_jhs/workspace/FourthApp/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/android1_jhs/workspace/FourthApp/app/src/main/res/layout/activity_music.xml" value="0.44947916666666665" />

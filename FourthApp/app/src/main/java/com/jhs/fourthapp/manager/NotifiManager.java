@@ -60,7 +60,6 @@ public class NotifiManager {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "FourthAppNoti")
                 .setContentTitle("커스텀 노티")
-                .setOngoing(true)
                 .setContentText("");
 
 
