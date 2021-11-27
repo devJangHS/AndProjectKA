@@ -132,8 +132,11 @@ public class DetailActivity extends AppCompatActivity {
                     post.setMemberName(memberName);
                     post.setType(0);
 
+
                     String fileName = "0_"+System.currentTimeMillis()+".jpg";
-                    post.setFile(fileName);
+
+                    if(mFile != null)
+                        post.setFile(fileName);
 
                     postAPI.createPost(post).enqueue(new Callback<Void>() {
                         @Override
@@ -163,7 +166,6 @@ public class DetailActivity extends AppCompatActivity {
         RequestBody fileBody =RequestBody.create(MediaType.parse("multipart/form-data"), mFile);
         MultipartBody.Part bodyPart = MultipartBody.Part.createFormData("file", fileName, fileBody);
 
-
         postAPI.uploadFile(bodyPart).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -192,8 +194,8 @@ public class DetailActivity extends AppCompatActivity {
         File file = null;
 
         try {
-            bitmap =  MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-            file = new File(Environment.getExternalStorageDirectory() + File.separator + "123" + System.currentTimeMillis());
+            bitmap =  MediaStore.Images.Media.getBitmap(getContentResolver(), uri); // uri -> bitmap
+            file = new File(Environment.getExternalStorageDirectory() + File.separator + System.currentTimeMillis());
             file.createNewFile();
 
             if(bitmap != null){
