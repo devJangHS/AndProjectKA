@@ -14,6 +14,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -60,6 +61,8 @@ public class DetailActivity extends AppCompatActivity {
 
     String memberName;
 
+    boolean isAdd = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,18 +103,49 @@ public class DetailActivity extends AppCompatActivity {
 
         if(post != null) {
 
+            isAdd = false;
+
             memberName = post.getMemberName();
 
             etTitle.setText(post.getTitle());
-            etTitle.setEnabled(false);
             etContent.setText(post.getContent());
-            etContent.setEnabled(false);
 
             if(post.getFile() != null)
                 Glide.with(this).load(post.getFile()).into(imgPhoto);
 
-            btnAdd.setVisibility(View.GONE);
+            btnAdd.setText("Update");
+
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    post.setTitle(etTitle.getText().toString());
+                    post.setContent(etContent.getText().toString());
+
+                    postAPI.updatePost(post.getId(),post).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+
+                            if(response.code() == 200) {
+                                Toast.makeText(DetailActivity.this, "POST 수정 성공!", Toast.LENGTH_SHORT).show();
+                                DetailActivity.this.finish();
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            t.printStackTrace();
+
+                        }
+                    });
+
+                }
+            });
+
         }else{
+
+            isAdd = true;
 
             imgPhoto.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -132,18 +166,24 @@ public class DetailActivity extends AppCompatActivity {
                     post.setMemberName(memberName);
                     post.setType(0);
 
-
                     String fileName = "0_"+System.currentTimeMillis()+".jpg";
-
-                    if(mFile != null)
-                        post.setFile(fileName);
+                    post.setFile(fileName);
 
                     postAPI.createPost(post).enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
 
-                            if(response.code() == 200 && mFile != null)
-                                uploadFile(fileName);
+                            if(response.code() == 200){
+
+                                if( mFile != null)
+                                    uploadFile(fileName);
+                                else {
+                                    Toast.makeText(DetailActivity.this, "POST 등록 성공!", Toast.LENGTH_SHORT).show();
+                                    DetailActivity.this.finish();
+                                }
+
+                            }
+
 
                         }
 
@@ -165,6 +205,7 @@ public class DetailActivity extends AppCompatActivity {
 
         RequestBody fileBody =RequestBody.create(MediaType.parse("multipart/form-data"), mFile);
         MultipartBody.Part bodyPart = MultipartBody.Part.createFormData("file", fileName, fileBody);
+
 
         postAPI.uploadFile(bodyPart).enqueue(new Callback<Void>() {
             @Override
@@ -194,8 +235,8 @@ public class DetailActivity extends AppCompatActivity {
         File file = null;
 
         try {
-            bitmap =  MediaStore.Images.Media.getBitmap(getContentResolver(), uri); // uri -> bitmap
-            file = new File(Environment.getExternalStorageDirectory() + File.separator + System.currentTimeMillis());
+            bitmap =  MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+            file = new File(Environment.getExternalStorageDirectory() + File.separator + "123" + System.currentTimeMillis());
             file.createNewFile();
 
             if(bitmap != null){

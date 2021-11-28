@@ -94,13 +94,8 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<ArrayList<Post>> call, Response<ArrayList<Post>> response) {
 
                 if(response.code() == 200){
-
-                    if(listPost.size() != response.body().size()) {
-
-                        listPost = response.body();
-                        adapter.replaceItem(listPost);
-                    }
-
+                    listPost = response.body();
+                    adapter.replaceItem(listPost);
                 }
             }
 

@@ -6,6 +6,9 @@ import java.io.Serializable;
 
 public class Post implements Serializable {
 
+    @SerializedName("id")
+    int id;
+
     @SerializedName("title")
     String title;
 
@@ -20,6 +23,14 @@ public class Post implements Serializable {
 
     @SerializedName("type")
     int type;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
